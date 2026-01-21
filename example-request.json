@@ -1,0 +1,181 @@
+{
+  "input": {
+    "workflow": {
+      "3": {
+        "inputs": {
+          "seed": 1631591050,
+          "steps": 30,
+          "cfg": 4.5,
+          "sampler_name": "ddpm",
+          "scheduler": "karras",
+          "denoise": 1,
+          "model": [
+            "60",
+            0
+          ],
+          "positive": [
+            "60",
+            1
+          ],
+          "negative": [
+            "60",
+            2
+          ],
+          "latent_image": [
+            "5",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "4": {
+        "inputs": {
+          "ckpt_name": "sd_xl_base_1.0.safetensors"
+        },
+        "class_type": "CheckpointLoaderSimple",
+        "_meta": {
+          "title": "CheckpointLoaderSimple"
+        }
+      },
+      "5": {
+        "inputs": {
+          "value": 1016
+        },
+        "class_type": "EmptyLatentImage",
+        "_meta": {
+          "title": "EmptyLatentImage"
+        }
+      },
+      "8": {
+        "inputs": {
+          "samples": [
+            "3",
+            0
+          ],
+          "vae": [
+            "4",
+            2
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "11": {
+        "inputs": {
+          "filename": "ip-adapter_instant_id_sdxl.bin"
+        },
+        "class_type": "InstantIDModelLoader",
+        "_meta": {
+          "title": "InstantIDModelLoader"
+        }
+      },
+      "13": {
+        "inputs": {
+          "image": "IMG_4412.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "15": {
+        "inputs": {
+          "images": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "16": {
+        "inputs": {
+          "control_net_name": "control_instant_id_sdxl.safetensors"
+        },
+        "class_type": "ControlNetLoader",
+        "_meta": {
+          "title": "ControlNetLoader"
+        }
+      },
+      "38": {
+        "inputs": {
+          "text": "CUDA"
+        },
+        "class_type": "InstantIDFaceAnalysis",
+        "_meta": {
+          "title": "InstantIDFaceAnalysis"
+        }
+      },
+      "39": {
+        "inputs": {
+          "text": "illustration of a young blond boy running in a busy city, richard scarry childrens book style, Dr. Seuss, flat color, thick outlines",
+          "clip": [
+            "4",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "40": {
+        "inputs": {
+          "text": "photograph, deformed, glitch, noisy, realistic, stock photo",
+          "clip": [
+            "4",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "60": {
+        "inputs": {
+          "value": 0.8,
+          "instantid": [
+            "11",
+            0
+          ],
+          "insightface": [
+            "38",
+            0
+          ],
+          "control_net": [
+            "16",
+            0
+          ],
+          "image": [
+            "13",
+            0
+          ],
+          "model": [
+            "4",
+            0
+          ],
+          "positive": [
+            "39",
+            0
+          ],
+          "negative": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "ApplyInstantID",
+        "_meta": {
+          "title": "ApplyInstantID"
+        }
+      }
+    }
+  }
+}
